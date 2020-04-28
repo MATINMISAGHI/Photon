@@ -5,6 +5,18 @@ const form = document.querySelector(".search-form");
 let searchValue;
 
 
+// Event Listeners
+searchInput.addEventListener('input', updateInput);
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    currentSearch = searchValue;
+    searchPhotos(searchValue);
+});
+
+function updateInput(e) {
+    searchValue = e.target.value;
+}
+
 async function fetchApi(url) {
     const dataFetch = await fetch(url, {
         method: "GET",
@@ -35,6 +47,12 @@ function generatePictures(data) {
 async function curatedPhotos() {
     fetchLink = "https://api.pexels.com/v1/curated?per_page=15&page=1";
     const data = await fetchApi (fetchLink);
+    generatePictures(data);
+}
+
+async function searchPhotos(query) {
+    fetchLink = `https://api.pexels.com/v1/search?query=${query}+query&per_page=15&page=1`;
+    const data = await fetchApi(fetchLink);
     generatePictures(data);
 }
 
