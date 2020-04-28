@@ -3,7 +3,10 @@ const gallery = document.querySelector(".gallery");
 const searchInput = document.querySelector(".search-input");
 const form = document.querySelector(".search-form");
 let searchValue;
-
+const more = document.querySelector(".more");
+let page = 1;
+let fetchLink;
+let currentSearch;
 
 // Event Listeners
 searchInput.addEventListener('input', updateInput);
@@ -12,6 +15,8 @@ form.addEventListener('submit', (e) => {
     currentSearch = searchValue;
     searchPhotos(searchValue);
 });
+
+more.addEventListener("click", loadMore);
 
 function updateInput(e) {
     searchValue = e.target.value;
@@ -60,6 +65,17 @@ async function searchPhotos(query) {
 function clear() {
     gallery.innerHTML = "";
     searchInput.value = "";
+}
+
+async function loadMore() {
+    page++;
+    if (currentSearch) {
+        fetchLink = `https://api.pexels.com/v1/search?query=${currentSearch}+query&per_page=15&page=${page}`;
+    } else {
+        fetchLink = `https://api.pexels.com/v1/curated?per_page=15&page=${page}`;
+    }
+    const data = await fetchApi(fetchLink);
+    generatePictures(data);
 }
 
 curatedPhotos();
