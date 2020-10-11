@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="Seach thousands of photos taken by amateur and pro photographers.">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Search thousands of photos taken by amateur and pro photographers.">
     <meta name="robots" content="index, follow">
 
 
-    <link rel="icon" href="./icons/pictures.svg">
+    <link rel="icon" type="image/png" href="./icons/pictures.svg">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <title>Photon</title>
+    <title>Scrolling Images</title>
 </head>
+
 <body>
     <header>
-        <h2><a id="logo" href="./index.html">Photon</a></h2>
+        <h2><a id="logo" href="./index.html">Scrolling Images</a></h2>
         <form action="" class="search-form">
             <input type="text" name="search" class="search-input">
             <button type="submit" class="submit-btn">Search</button>
         </form>
     </header>
     <main>
-        <div class="gallery"></div>
+        <div class="gallery" id="gallery"></div>
     </main>
-    <div class="nav-button">
-        <button class="more">More</button>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <img src="/icons/loading.svg" alt="loading">
     </div>
-    
     <script src="./app.js"></script>
 </body>
+
 </html>
